@@ -30,7 +30,7 @@ import static com.roshinsky.rssfeed.FeedCacheProvider.FEED_ITEM_IMAGE_URL;
 import static com.roshinsky.rssfeed.FeedCacheProvider.FEED_ITEM_LINK;
 import static com.roshinsky.rssfeed.FeedCacheProvider.FEED_ITEM_TITLE;
 
-public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>, AdapterView.OnItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
     public static final String LAST_TIME_UPDATE_KEY = "last_time_update";
     private static final int LOADER_ID = 0x01;
     private FeedsCursorAdapter feedCursorAdapter;
@@ -52,8 +52,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 try {
                     TextView textViewLink = (TextView) view.findViewById(R.id.rss_item_link);
                     String link = textViewLink.getText().toString();
-
-
                     Uri uri = Uri.parse(link);
 
                     if (uri != null) {
@@ -105,16 +103,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
         feedCursorAdapter.swapCursor(null);
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
     }
 
     public void updateCache() {
