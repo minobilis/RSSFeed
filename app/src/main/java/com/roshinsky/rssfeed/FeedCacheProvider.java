@@ -22,12 +22,14 @@ public class FeedCacheProvider extends ContentProvider {
     static final String FEED_ITEM_TITLE = "title";
     static final String FEED_ITEM_DESCRIPTION = "description";
     static final String FEED_ITEM_IMAGE_URL = "image_url";
+    static final String FEED_ITEM_LINK = "link";
 
     static final String DB_CREATE = "create table " + FEEDS_TABLE + "("
             + FEED_ITEM_ID + " integer primary key autoincrement, "
             + FEED_ITEM_TITLE + " text, "
             + FEED_ITEM_DESCRIPTION + " text, "
-            + FEED_ITEM_IMAGE_URL + " text" + ");";
+            + FEED_ITEM_IMAGE_URL + " text, "
+            + FEED_ITEM_LINK + " text" + ");";
 
     static final String AUTHORITY = "com.roshin.providers.feeds";
 

@@ -2,8 +2,10 @@ package com.roshinsky.rssfeed;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
@@ -12,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ListViewCompat;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.Header;
@@ -24,6 +27,7 @@ import rejasupotaro.asyncrssclient.RssItem;
 import static com.roshinsky.rssfeed.FeedCacheProvider.FEED_ITEM_CONTENT_URI;
 import static com.roshinsky.rssfeed.FeedCacheProvider.FEED_ITEM_DESCRIPTION;
 import static com.roshinsky.rssfeed.FeedCacheProvider.FEED_ITEM_IMAGE_URL;
+import static com.roshinsky.rssfeed.FeedCacheProvider.FEED_ITEM_LINK;
 import static com.roshinsky.rssfeed.FeedCacheProvider.FEED_ITEM_TITLE;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>, AdapterView.OnItemSelectedListener {
@@ -45,17 +49,12 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         lvData.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                /*try {
-                    TextView textViewID = (TextView) view.findViewById(R.id.rss_item_id);
-                    TextView textViewTitle = (TextView) view.findViewById(R.id.rss_item_title);
-                    TextView textViewDescription = (TextView) view.findViewById(R.id.rss_item_description);
-                    ImageView imageViewImage = (ImageView) view.findViewById(R.id.rss_item_image);
+                try {
+                    TextView textViewLink = (TextView) view.findViewById(R.id.rss_item_link);
+                    String link = textViewLink.getText().toString();
 
-                    String url = textViewURL.getText().toString();
-                    String status = textViewStatus.getText().toString();
-                    String _id = textViewID.getText().toString();
 
-                    Uri uri = mDataSet.get(position).getLink();
+                    Uri uri = Uri.parse(link);
 
                     if (uri != null) {
                         Intent browserIntent = new Intent(Intent.ACTION_VIEW, uri);
@@ -67,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
                 } catch (Exception e) {
                     e.printStackTrace();
-                }*/
+                }
             }
         });
 
@@ -90,7 +89,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                         FeedCacheProvider.FEED_ITEM_ID,
                         FEED_ITEM_TITLE,
                         FEED_ITEM_DESCRIPTION,
-                        FEED_ITEM_IMAGE_URL
+                        FEED_ITEM_IMAGE_URL,
+                        FEED_ITEM_LINK
                 },
                 null,
                 null,
@@ -152,6 +152,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             values.put(FEED_ITEM_TITLE, item.getTitle());
             values.put(FEED_ITEM_DESCRIPTION, item.getDescription());
             values.put(FEED_ITEM_IMAGE_URL, item.getMediaThumbnails().get(0).getUrl().toString());
+            values.put(FEED_ITEM_LINK, item.getLink().toString());
             getContentResolver().insert(FEED_ITEM_CONTENT_URI, values);
         }
 

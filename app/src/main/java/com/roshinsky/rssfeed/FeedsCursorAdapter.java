@@ -25,19 +25,19 @@ public class FeedsCursorAdapter extends CursorAdapter {
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
-        TextView textViewID = (TextView) view.findViewById(R.id.rss_item_id);
+        TextView textViewLink = (TextView) view.findViewById(R.id.rss_item_link);
         TextView textViewTitle = (TextView) view.findViewById(R.id.rss_item_title);
         TextView textViewDescription = (TextView) view.findViewById(R.id.rss_item_description);
         ImageView imageViewImage = (ImageView) view.findViewById(R.id.rss_item_image);
 
-        String id = cursor.getString(cursor.getColumnIndexOrThrow(FeedCacheProvider.FEED_ITEM_ID));
         String title = cursor.getString(cursor.getColumnIndexOrThrow(FeedCacheProvider.FEED_ITEM_TITLE));
         String description = cursor.getString(cursor.getColumnIndexOrThrow(FeedCacheProvider.FEED_ITEM_DESCRIPTION));
         String imageUrl = cursor.getString(cursor.getColumnIndexOrThrow(FeedCacheProvider.FEED_ITEM_IMAGE_URL));
+        String link = cursor.getString(cursor.getColumnIndexOrThrow(FeedCacheProvider.FEED_ITEM_LINK));
 
-        textViewID.setText(id);
         textViewTitle.setText(title);
         textViewDescription.setText(description);
+        textViewLink.setText(link);
 
         try {
             Picasso.with(context)

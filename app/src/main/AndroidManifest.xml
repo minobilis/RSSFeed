@@ -22,10 +22,6 @@
             </intent-filter>
         </activity>
 
-        <service
-            android:name=".LoadFeedIntentService">
-        </service>
-
         <provider
             android:name=".FeedCacheProvider"
             android:authorities="com.roshin.providers.feeds"

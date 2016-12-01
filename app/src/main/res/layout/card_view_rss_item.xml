@@ -51,12 +51,9 @@
                 android:padding="10dp" />
 
             <TextView
-            android:id="@+id/rss_item_id"
+            android:id="@+id/rss_item_link"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="6"
-            android:padding="10dp"
             android:visibility="gone"/>
 
         </LinearLayout>
