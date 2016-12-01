@@ -7,9 +7,15 @@
 
     tools:context="com.roshinsky.rssfeed.MainActivity">
 
-    <android.support.v7.widget.RecyclerView
+<!--    <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_feed"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content" />-->
+
+    <android.support.v7.widget.ListViewCompat
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v7.widget.ListViewCompat>
 
 </RelativeLayout>

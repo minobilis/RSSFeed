@@ -3,6 +3,10 @@
     package="com.roshinsky.rssfeed">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <permission
+        android:name="com.roshin.providers.READ_DATABASE" />
+    <permission
+        android:name="com.roshin.providers.WRITE_DATABASE" />
 
     <application
         android:allowBackup="true"
@@ -17,6 +21,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".LoadFeedIntentService">
+        </service>
+
+        <provider
+            android:name=".FeedCacheProvider"
+            android:authorities="com.roshin.providers.feeds"
+            android:readPermission="com.roshin.providers.READ_DATABASE"
+            android:writePermission="com.roshin.providers.WRITE_DATABASE"
+            android:exported="false">
+        </provider>
+
     </application>
 
 </manifest>
